@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "a0d2ac063ea5cce1403b0d877f0f2735",
+    "revision": "195c1a929389ce6adeb9dd9079698977",
     "url": "/MoodyBlues/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/MoodyBlues/static/css/2.790ebed0.chunk.css"
   },
   {
-    "revision": "74c4ddd630563f8cfb1b",
+    "revision": "eaa8427e8d1b47332aea",
     "url": "/MoodyBlues/static/css/main.dfca195d.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/MoodyBlues/static/js/2.07e223f5.chunk.js.LICENSE"
   },
   {
-    "revision": "74c4ddd630563f8cfb1b",
-    "url": "/MoodyBlues/static/js/main.56940185.chunk.js"
+    "revision": "eaa8427e8d1b47332aea",
+    "url": "/MoodyBlues/static/js/main.586e26f6.chunk.js"
   },
   {
     "revision": "719d62576945654f6ca7",

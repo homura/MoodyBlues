@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/MoodyBlues/precache-manifest.3b42051ea760cd17657f2487f27d7b19.js"
+  "/MoodyBlues/precache-manifest.e8d8f72ae55c39d202bff4019474d8bf.js"
 );
 
 self.addEventListener('message', (event) => {
