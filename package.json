@@ -1,0 +1,93 @@
+{
+  "name": "moody-blues",
+  "version": "0.1.0",
+  "homepage": "",
+  "dependencies": {
+    "@ant-design/dark-theme": "^1.0.3",
+    "@elastic/elasticsearch": "^7.5.0",
+    "@svgdotjs/svg.js": "^3.0.16",
+    "@tippy.js/react": "^3.1.1",
+    "@types/classnames": "^2.2.9",
+    "@types/d3-array": "^2.0.0",
+    "@types/d3-collection": "^1.0.8",
+    "@types/file-saver": "^2.0.1",
+    "@types/jest": "24.0.23",
+    "@types/lodash": "^4.14.148",
+    "@types/node": "12.12.8",
+    "@types/randombytes": "^2.0.0",
+    "@types/react": "16.9.11",
+    "@types/react-dom": "16.9.4",
+    "@types/react-json-tree": "^0.6.11",
+    "@vx/heatmap": "^0.0.192",
+    "@vx/vx": "^0.0.192",
+    "antd": "^3.25.2",
+    "axios": "^0.19.0",
+    "camelcase-keys": "^6.1.1",
+    "classnames": "^2.2.6",
+    "d3": "^5.14.2",
+    "d3-array": "^2.4.0",
+    "d3-brush": "^1.1.5",
+    "d3-color": "^1.4.0",
+    "d3-scale-chromatic": "^1.5.0",
+    "d3-selection": "^1.4.1",
+    "date-fns": "^2.8.1",
+    "easy-peasy": "^3.2.3",
+    "file-saver": "^2.0.2",
+    "formik": "^2.0.6",
+    "formik-antd": "^1.6.2",
+    "fuse.js": "^3.4.6",
+    "http-proxy-middleware": "^0.20.0",
+    "lodash": "^4.17.15",
+    "prop-types": "^15.7.2",
+    "randombytes": "^2.1.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-dropzone": "^10.2.0",
+    "react-json-tree": "^0.11.2",
+    "react-scripts": "3.3.0-next.62",
+    "react-sizeme": "^2.6.10",
+    "react-use": "^13.12.2",
+    "styled-components": "^4.4.1",
+    "swr": "^0.1.13",
+    "tree-model": "^1.0.7",
+    "typescript": "3.7.2",
+    "utility-types": "^3.10.0",
+    "xlsx": "^0.15.4"
+  },
+  "scripts": {
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build",
+    "test": "react-app-rewired test",
+    "eject": "react-app-rewired eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@hot-loader/react-dom": "^16.11.0",
+    "@types/d3": "^5.7.2",
+    "@types/styled-components": "^4.4.0",
+    "babel-plugin-import": "^1.12.2",
+    "customize-cra": "^0.9.1",
+    "gh-pages": "^2.1.1",
+    "less": "^3.10.3",
+    "less-loader": "^5.0.0",
+    "react-app-rewire-hot-loader": "^2.0.1",
+    "react-app-rewired": "^2.1.5",
+    "react-hot-loader": "^4.12.18"
+  }
+}
