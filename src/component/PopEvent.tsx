@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React from 'react';
 import { Popover } from 'antd';
 import styled from 'styled-components';
 import { TraceEvent } from '../types';
