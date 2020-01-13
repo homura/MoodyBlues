@@ -58,6 +58,12 @@ export function isKeyframeStartsOfEpoch(
   );
 }
 
+export function isEventStartsOfEpoch(
+  event: TraceEvent,
+): event is EpochKeyframe {
+  return isKeyframe(event) && isKeyframeStartsOfEpoch(event);
+}
+
 export function isKeyframeStartsOfRound(
   event: KeyframeEvent,
 ): event is RoundKeyframe {

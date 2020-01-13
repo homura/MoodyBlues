@@ -1,6 +1,11 @@
 import { ProposeEvent, TraceEvent, VoteEvent } from '../types';
 
 export interface NodeClient {
+  /**
+   * get latest epoch id
+   */
+  latestEpoch(): Promise<number>;
+
   roundCountByEpoch(start?: number, end?: number): Promise<Map<number, number>>;
 
   eventsByEpoch(epochId: number): Promise<TraceEvent[]>;
@@ -17,6 +22,10 @@ export interface NodeClient {
 }
 
 export class NoopNodeClient implements NodeClient {
+  async latestEpoch(): Promise<number> {
+    return 0;
+  }
+
   async eventsByEpoch(epochId: number): Promise<TraceEvent[]> {
     return [];
   }

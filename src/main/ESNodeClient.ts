@@ -94,6 +94,28 @@ export async function fetchKeyframes(
   options?: { start: number; end: number },
 ): Promise<KeyframeEvent[]> {
   const { start, end } = options || { start: 0, end: 1000 };
+  const startEvent = rowsToTraceEvent<KeyframeEvent>(
+    await sql({
+      query: `${SQL_SELECT_EVENT}
+            WHERE log_path='${logPath}'
+            AND message.event_type = 'keyframe'
+            AND message.tag.epoch_id >= ${start}
+            ORDER BY message.timestamp
+            limit 1`,
+    }),
+  );
+
+  const endEvent = rowsToTraceEvent<KeyframeEvent>(
+    await sql({
+      query: `${SQL_SELECT_EVENT}
+            WHERE log_path='${logPath}'
+            AND message.event_type = 'keyframe'
+            AND message.tag.epoch_id <= ${end}
+            ORDER BY message.timestamp DESC
+            limit 1`,
+    }),
+  );
+
   const res = await search({
     size: 9999,
     _source: ['message'],
@@ -106,8 +128,21 @@ export async function fetchKeyframes(
               'message.event_type': { query: 'keyframe', operator: 'AND' },
             },
           },
-
           { match: { log_path: { query: logPath, operator: 'AND' } } },
+          {
+            bool: {
+              must: [
+                {
+                  range: {
+                    'message.timestamp': {
+                      gte: startEvent[0]?.timestamp ?? 0,
+                      lte: endEvent[0]?.timestamp ?? Infinity,
+                    },
+                  },
+                },
+              ],
+            },
+          },
           {
             bool: {
               should: [
@@ -133,6 +168,16 @@ export class ESNodeClient implements NodeClient {
 
   constructor(config: ESClientConfig) {
     this.config = config;
+  }
+
+  async latestEpoch(): Promise<number> {
+    const x = await sql({
+      query: `SELECT MAX(message.tag.epoch_id)
+              FROM muta_metrics
+              WHERE log_path='${this.config.logPath}'`,
+    });
+
+    return _.get(x.data.rows, [0, 0], 0);
   }
 
   async eventsByEpoch(epochId: number): Promise<TraceEvent[]> {
@@ -186,9 +231,16 @@ export class ESNodeClient implements NodeClient {
     start?: number,
     end?: number,
   ): Promise<Map<number, number>> {
+    let startEpoch: number = start ?? 0;
+    let endEpoch: number = end ?? 1000;
+    if (start === undefined) {
+      endEpoch = await this.latestEpoch();
+      startEpoch = endEpoch - 1000 < 0 ? 0 : endEpoch - 1000;
+    }
+
     const keyframes = await fetchKeyframes(this.config.logPath, {
-      start: start ?? 0,
-      end: end ?? 1000,
+      start: startEpoch,
+      end: endEpoch,
     });
     return roundCountEachEpoch(keyframes);
   }

@@ -1,6 +1,12 @@
+import _ from 'lodash';
 import { NodeClient } from './NodeClient';
-import { ProposeEvent, TraceEvent, VoteEvent } from '../types';
-import { EpochEvents, isProposeEvent, isVoteEvent } from '../event';
+import { EpochKeyframe, ProposeEvent, TraceEvent, VoteEvent } from '../types';
+import {
+  EpochEvents,
+  isEventStartsOfEpoch,
+  isProposeEvent,
+  isVoteEvent,
+} from '../event';
 import { roundCountEachEpoch } from '../core/event';
 
 export class DefaultNodeClient implements NodeClient {
@@ -8,6 +14,15 @@ export class DefaultNodeClient implements NodeClient {
 
   constructor(raw: TraceEvent[]) {
     this.raw = raw;
+  }
+
+  latestEpoch(): Promise<number> {
+    const epochEvent = _.findLast<TraceEvent, EpochKeyframe>(
+      this.raw,
+      isEventStartsOfEpoch,
+    );
+    if (!epochEvent) return Promise.resolve(0);
+    return Promise.resolve(epochEvent.tag.epochId);
   }
 
   eventsByEpoch(epochId: number): Promise<TraceEvent[]> {

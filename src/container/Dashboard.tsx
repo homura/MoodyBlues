@@ -48,6 +48,7 @@ function ProposeTable(props: { events: ProposeEvent[] | undefined }) {
       scroll={{ y: 180 }}
       columns={columns}
       dataSource={props.events}
+      rowKey={(x, i) => i.toString()}
     />
   );
 }
@@ -84,6 +85,7 @@ function VoteTable(props: { events: VoteEvent[] | undefined }) {
       scroll={{ y: 180 }}
       columns={columns}
       dataSource={props.events}
+      rowKey={(x, i) => i.toString()}
     />
   );
 }
